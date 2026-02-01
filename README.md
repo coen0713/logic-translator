@@ -59,12 +59,12 @@ Atoms are normalized by lowercasing, removing determiners, and lemmatizing verbs
 
 Usage-
 Input:
-If it is raining and it is cold, then the ground is wet
+python translator.py 'If it is raining and it is cold, then the ground is wet'
 Output:
 (raining ∧ cold) → wet
 
 Input:
-Not A or B
+python translator.py 'Not A or B'
 Output:
 (¬A) ∨ B
 If the sentence is ambiguous, the system will reject the input or produce an error explaining the unsupported construction.
