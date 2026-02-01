@@ -52,7 +52,13 @@ def parse(tokens):
 
     types = [t[1] for t in tokens]
 
-    if "IF" in types:
+    if "NOT" in types:
+        pivot = types.index("NOT")
+        return Node("not", "NOT", children=[
+            parse(tokens[pivot + 1 :])
+        ])
+
+    elif "IF" in types:
         if_idx = types.index("IF")
         then_idx = types.index("THEN")
         return Node("implies", "IMPLIES", children=[
@@ -72,12 +78,6 @@ def parse(tokens):
         return Node("and", "AND", children=[
             parse(tokens[:pivot]), 
             parse(tokens[pivot + 1:])
-        ])
-
-    elif "NOT" in types:
-        pivot = types.index("NOT")
-        return Node("not", "NOT", children=[
-            parse(tokens[pivot + 1 :])
         ])
 
 if __name__ == "__main__":
